@@ -1,52 +1,48 @@
-import pygame
-import time
+from pygame import *
+'''Необхідні класи'''
+ 
+# клас-батько для спрайтів
+class GameSprite(sprite.Sprite):
+    #конструктор класу
+    def __init__(self, player_image, player_x, player_y, player_speed, wight, height):
+        super().__init__()
+        # кожен спрайт повинен зберігати властивість image - зображення
+        self.image = transform.scale(image.load(player_image), (wight, height)) #разом 55,55 - параметри
+        self.speed = player_speed
+        # кожен спрайт повинен зберігати властивість rect - прямокутник, в який він вписаний
+        self.rect = self.image.get_rect()
+        self.rect.x = player_x
+        self.rect.y = player_y
+    
+    def reset(self):
+        window.blit(self.image, (self.rect.x, self.rect.y))
 
 
-pygame.init()
+#ігрова сцена:
+back = (200, 255, 255)  #колір фону (background)
+win_width = 600
+win_height = 500
+window = display.set_mode((win_width, win_height))
+window.fill(back)
 
-back = [55, 255, 255]
+ball = GameSprite('tenis_ball.png', 200, 200, 4, 50, 50)
 
-screen = pygame.display.set_mode([800, 600], pygame.RESIZABLE)
-pygame.display.set_caption("Test drawings")
+#прапорці, що відповідають за стан гри
+game = True
+finish = False
+clock = time.Clock()
+FPS = 60
+ 
+font.init()
 
-clock = pygame.time.Clock()
-
-font1 = pygame.font.Font(None, 56)
-text = font1.render("Hello", True, (255, 0, 0))
-
-# rect1 = pygame.Rect()
-
-textX, textY = 0, 0
-
-start_time = time.time()
-cur_time = start_time
-
-print(start_time)
-
-GAME_STATE = True
-while GAME_STATE:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            GAME_STATE = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_DOWN:
-                textY += 1
-            if event.key == pygame.K_f:
-                if screen.get_flags() & pygame.FULLSCREEN:
-                    pygame.display.set_mode([800, 600])
-                else:
-                    pygame.display.set_mode([800, 600], pygame.FULLSCREEN)
-    screen.fill(back)
-    screen.blit(text, (textX, textY))
-
-    rect1 = pygame.draw.rect(screen, (0, 0, 255), (0, 0, 50, 150))
-
-    textX += 0.1
-    new_time = time.time()
-
-    print(int(new_time-start_time))
-
-    pygame.display.update()
-    clock.tick(60)
-    #print(clock.get_fps())
-
+ 
+speed_x = 3
+speed_y = 3
+ 
+while game:
+    for e in event.get():
+        if e.type == QUIT:
+            game = False
+    
+    display.update()
+    clock.tick(FPS)
