@@ -44,6 +44,8 @@ while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
+
+    ball.reset()
     
     display.update()
     clock.tick(FPS)
