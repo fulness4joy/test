@@ -39,7 +39,8 @@ font.init()
  
 speed_x = 3
 speed_y = 3
- 
+
+# Головний цикл
 while game:
     for e in event.get():
         if e.type == QUIT:
