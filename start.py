@@ -40,7 +40,7 @@ font.init()
 speed_x = 3
 speed_y = 3
 
-# Головний цикл
+# Головний ігровий цикл
 while game:
     for e in event.get():
         if e.type == QUIT:
@@ -49,4 +49,6 @@ while game:
     ball.reset()
     
     display.update()
+    # Add fps-counter
+    print("fps:", clock.get_fps(), end='\r')
     clock.tick(FPS)
