@@ -1,6 +1,7 @@
 from pygame import *
 '''Необхідні класи'''
  
+ 
 # клас-батько для спрайтів
 class GameSprite(sprite.Sprite):
     #конструктор класу
@@ -38,11 +39,16 @@ font.init()
  
 speed_x = 3
 speed_y = 3
- 
+
+# Головний ігровий цикл
 while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
+
+    ball.reset()
     
     display.update()
+    # Add fps-counter new
+    print("fps:", clock.get_fps(), end='\r')
     clock.tick(FPS)
