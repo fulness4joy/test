@@ -49,6 +49,6 @@ while game:
     ball.reset()
     
     display.update()
-    # Add fps-counter
+    # Add fps-counter new
     print("fps:", clock.get_fps(), end='\r')
     clock.tick(FPS)
