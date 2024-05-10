@@ -48,6 +48,7 @@ while game:
 
     ball.reset()
     
+    print("Кадри в секунду")
     display.update()
     # Add fps-counter new
     print("Frames per second:", clock.get_fps(), end='\r')
