@@ -50,5 +50,5 @@ while game:
     
     display.update()
     # Add fps-counter new
-    print("fps:", clock.get_fps(), end='\r')
+    print("Frames per second:", clock.get_fps(), end='\r')
     clock.tick(FPS)
