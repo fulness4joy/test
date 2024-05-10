@@ -44,5 +44,6 @@ while game:
         if e.type == QUIT:
             game = False
     
+    print("Кадри в секунду")
     display.update()
     clock.tick(FPS)
